@@ -57,3 +57,8 @@ print_r($_SESSION);
 
 
 echo $_SESSION["username"] . $_SESSION["pwd"] . $_SESSION["isAdmin"];
+
+
+
+?>
+

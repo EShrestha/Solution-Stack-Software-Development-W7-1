@@ -20,13 +20,9 @@ DEFINE ("DB_PORT", "3306");
 
 function Get_DB_Connection(){
 
-    echo "A";
-
     $dbConnection = @mysqli_connect(DB_SERVER, DB_USER, DB_PWD, DB_NAME, DB_PORT)
 
     OR die('Failed to connect to MySQL ' . DB_SERVER . '::' . DB_NAME . ' : ' . mysqli_connect_error());
-
-    echo "B";
 
     return $dbConnection;
 
@@ -82,15 +78,15 @@ function Get_User($dbConnection, $username, $password){
 
 
 
-function Create_Page($dbConnection, $title, $body, $footer, $isVisible=FALSE, $isSubPage=FALSE, $belongsTo=1){
+function Create_Page($dbConnection, $title, $body, $footer, $isVisible=1, $isSubPage="false", $belongsTo=1){
 
-    if(!$isSubPage){
+    if(strcmp($isSubPage, "false") == 0){
 
         $q = SANITIZE("INSERT INTO Page (title, body, footer, isVisible) VALUES ('{$title}', '{$body}', '{$footer}', {$isVisible})");
 
     }else{
 
-        $q = SANITIZE("INSERT INTO Sub_Pages (belongsTo, title, body, footer, isVisible) VALUES ({$belongsTo}, '{$title}', '{$body}', '{$footer}', '{$isVisible}')");
+        $q = SANITIZE("INSERT INTO Sub_Pages (belongsTo, title, body, footer, isVisible) VALUES ({$belongsTo}, '{$title}', '{$body}', '{$footer}', {$isVisible})");
 
     }
 
@@ -265,3 +261,6 @@ function Delete_Page($pageID, $isSubPage = false){
 //     return @mysqli_query($dbConnection, $q);
 
 // }
+
+?>
+

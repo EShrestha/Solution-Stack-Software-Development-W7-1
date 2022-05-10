@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./admin.css">
+    <title>Home</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Manage Pages</h1>
+        <div class="inputs" style="padding: 30px;">
+
+            <textarea id="title" class="input" type="text" placeholder="Title"></textarea>
+            <textarea id="body" class="input" type="text" placeholder="Body"></textarea>
+            <textarea id="footer" class="input" type="text" placeholder="Footer"></textarea>
+            <input type="radio" id="isVisible" name="visible" value="isVisible" checked>
+            <label for="isVisible">Visible</label>
+            <input type="radio" id="notVisible" name="visible" value="notVisible">
+            <label for="notVisible">Not Visible</label>
+            
+            <textarea id="belongsTo" class="input" type="text" placeholder="Belongs to"></textarea>
+
+        </div>
+      
+
+        
+        <div class="buttons">
+            <button id="getAllPages" class="btn"> Get all pages</button>
+            <button id="getAllSubPages" class="btn" style="background-color: orange;">Get all sub pages</button>
+            <button id="addBtn" class="btn" style="background-color: red;">Add Page</button>
+            <button id="updateBtn" class="btn" style="background-color: greenyellow;">Update</button>
+            <button id="removeBtn" class="btn" style="background-color: greenyellow;">Remove</button>
+        </div>
+
+        <div id="outputDiv" class="output"></div>
+
+    </div>
+    
+</body>
+
+<script lang="js" src="./admin.js"></script>
+</html>

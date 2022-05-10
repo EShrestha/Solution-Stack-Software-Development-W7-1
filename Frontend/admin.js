@@ -1,5 +1,5 @@
-// const server = "http://10.0.0.28";
-const server = "http://10.10.15.37";
+const server = "http://10.0.0.21";
+// const server = "http://10.10.15.37";
 const req = new XMLHttpRequest();
 
 // Helper function to make sending requests easier
@@ -18,34 +18,44 @@ const sendRequest = (method, url, onload, params) => {
 
 
 ///////////////////////
+const id = document.getElementById("id");
+const title = document.getElementById("title");
+const body = document.getElementById("body");
+const footer = document.getElementById("footer");
+const belongsTo = document.getElementById("belongsTo");
+const isVisible = document.getElementById("isVisible");
 
 ///////////////////////
 
 // Getting parameters if exists from the inputs
-const getParams = (includeLim) => {
+const getParams = (includeBelongsTo) => {
     let p = "";
-    if (id.value) { p += `ID=${id.value}`;}
-    if (fName.value) { if (id.value) { p+="&";} p += `fName=${fName.value}`;}
-    if (lName.value) { if (p != "") { p+="&";} p += `lName=${lName.value}`;}
-    if (address.value) { if (p != "") { p+="&";} p += `address=${address.value}`;}
-    if (city.value) { if (p != "") { p += "&"; } p += `city=${city.value}`; }
-    if (includeLim) {
-        if (limit.value) { if (p != "") { p += "&"; } p += `limit=${limit.value}`; }
+    if (title.value) { if (p != "") { p+="&";} p += `title=${title.value}`;}
+    if (body.value) { if (p != "") { p+="&";} p += `body=${body.value}`;}
+    if (footer.value) { if (p != "") { p += "&"; } p += `footer=${footer.value}`; }
+    if (isVisible.checked) { if (p != "") { p += "&"; } p += `isVisible=1`; }
+    else if (!isVisible.checked) { if (p != "") { p += "&"; } p += `isVisible=0`; }
+    if (includeBelongsTo) {
+        if (belongsTo.value) { if (p != "") { p += "&"; } p += `belongsTo=${belongsTo.value}`; }
     }
     
     return p;
 }
 
-const readAllBtn = document.getElementById("readAllBtn").addEventListener('click', () => {
-    sendRequest("GET", "GetPages.php", outputGetAll);
+const getAllPages = document.getElementById("getAllPages").addEventListener('click', () => {
+    sendRequest("GET", "GetAllPages.php", outputGetAll);
 });
-const getByCityBtn = document.getElementById("getByCityBtn").addEventListener('click', (e) => {
-    console.log("Sending:", `GetRecordsWithOptions.php?${getParams()}`);
-    sendRequest("GET", `GetRecordsWithOptions.php?${getParams(true)}`, outputGetAll);
+const getAllSubPages = document.getElementById("getAllSubPages").addEventListener('click', () => {
+    sendRequest("GET", "GetAllSubPages.php", outputGetAll);
 });
+
 const addBtn = document.getElementById("addBtn").addEventListener("click", (e) => {
-    sendRequest("POST", `Add.php`, outputGetAll, `${getParams()}`);
-    //sendRequest("POST", `Add.php`, outputGetAll, `ID=2&fName=Jane&lName=Doe&address=springfield&city=Denver`);
+    if (belongsTo.value == '') {
+        sendRequest("POST", `AddPage.php`, outputGetAll, `${getParams()}`);
+    } else {
+        sendRequest("POST", `AddSubPage.php`, outputGetAll, `${getParams(true)}`);
+        
+    }
 });
 const updateBtn = document.getElementById("updateBtn").addEventListener("click", (e) => {
     sendRequest("POST", `Update.php`, outputGetAll, `${getParams()}`);
@@ -85,8 +95,13 @@ const populateOutput = (data) => {
             removeSingleFromOutput(div, r.ID);
         });
         
-        
-        div.innerHTML = `<p class="outputText">ID: ${r.ID}, ${r.fName} ${r.lName} from ${r.address} ${r.city}</p> `;
+        if (!r.belongsTo) {
+            div.innerHTML = `<p class="outputText">ID: ${r.ID}, isVisible:${r.isVisible === "1" ? "Y" : "N"}, Title: ${r.title.substring(0,20)}, Body: ${r.body.substring(0,20)}, Footer: ${r.footer.substring(0,20)}</p> `;
+            
+        } else {
+            div.innerHTML = `<p class="outputText">ID: ${r.ID}, isVisible:${r.isVisible === "1" ? "Y" : "N"}, Belongs to: ${r.belongsTo}, Title: ${r.title.substring(0,20)}, Body: ${r.body.substring(0,20)}, Footer: ${r.footer.substring(0,20)}</p> `;
+            
+        }
         div.appendChild(btn);
         outputDiv.appendChild(div);
         console.log("R:", r);
