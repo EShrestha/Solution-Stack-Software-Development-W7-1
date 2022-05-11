@@ -26,3 +26,8 @@ CREATE TABLE Users
     username varchar(20),
     pwd varchar(20)
 );
+
+CREATE TABLE Website
+(
+    styleSheet varchar(50)
+);

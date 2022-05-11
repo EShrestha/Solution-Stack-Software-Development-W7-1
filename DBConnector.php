@@ -138,143 +138,21 @@ function Get_Page($dbConnection, $pageID, $isSubPage)
 }
 
 
+function Get_Style($dbConnection){
+    $q = "SELECT * FROM Website";
+    return @mysqli_query($dbConnection, $q);
 
+}
+
+function Update_Style($dbConnection, $styleName)
+{
+    $qA = "DELETE FROM Website;";
+    $qB = "INSERT INTO Website (styleSheet) VALUES ('{$styleName}')";
+    $a =  @mysqli_query($dbConnection, $qA);
+    $b =  @mysqli_query($dbConnection, $qB);
+    return ($a && $b);
+}
 
 
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Getting records by city with optional parameters first name, last name, limit
-
-// function Get_Records_With_Options($dbConnection, $pageID,$sessionInfo){
-
-
-
-
-
-
-
-// // If any other parameter is set then add them tom the query
-
-// $fName = isset($fName) ? " AND FirstName LIKE '{$fName}'" : "";
-
-// $lName = isset($lName) ? " AND LastName LIKE '{$lName}'" : "";
-
-// $limit = isset($limit) ? " LIMIT {$limit}" : "";
-
-
-
-// $q = SANITIZE("SELECT * FROM People WHERE City LIKE '{$city}'{$fName}{$lName}{$limit}");
-
-// return @mysqli_query($dbConnection, $q);
-
-// }
-
-
-
-// // Adding a person to the table with the provided parameters
-
-// function Create_Record($dbConnection, $id, $fName, $lName, $address, $city){
-
-// $q = SANITIZE("INSERT INTO People (PersonID, FirstName, LastName, Address, City) VALUES ({$id},'{$fName}','{$lName}','{$address}','{$city}')");
-
-// return @mysqli_query($dbConnection, $q);
-
-// }
-
-
-
-// // Updating an existing records fields based on the provided field(s)
-
-// function Update_Record($dbConnection, $id, $fName=null, $lName=null, $address=null, $city=null){
-
-
-
-// $fName = isset($fName) ? " FirstName='{$fName}'," : "";
-
-// $lName = isset($lName) ? " LastName='{$lName}'," : "";
-
-// $address = isset($address) ? " Address='{$address}'," : "";
-
-// $city= isset($city) ? " City='{$city}'," : "";
-
-
-
-// $q = SANITIZE("UPDATE People SET {$fName}{$lName}{$address}{$city}PersonID={$id} WHERE PersonID = {$id}");
-
-// return @mysqli_query($dbConnection, $q);
-
-// }
-
-
-
-// // Deletes a person from the database based on their ID
-
-// function Delete_Record($dbConnection, $id){
-
-
-
-// $q = SANITIZE("DELETE FROM People WHERE PersonID = {$id}");
-
-// return @mysqli_query($dbConnection, $q);
-
-// }
-
-?>
