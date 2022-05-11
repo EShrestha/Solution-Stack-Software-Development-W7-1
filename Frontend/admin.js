@@ -1,4 +1,4 @@
-const server = "http://10.0.0.21";
+const server = "http://10.0.0.5";
 // const server = "http://10.10.15.37";
 const req = new XMLHttpRequest();
 
@@ -57,32 +57,30 @@ const addBtn = document.getElementById("addBtn").addEventListener("click", (e) =
         
     }
 });
-const updateBtn = document.getElementById("updateBtn").addEventListener("click", (e) => {
-    sendRequest("POST", `Update.php`, outputGetAll, `${getParams()}`);
-});
-const removeBtn = document.getElementById("removeBtn").addEventListener("click", (e) => {
-    sendRequest("POST", "DeleteByID.php", outputGetAll, `ID=${id.value}`);
-});
 
 // Print response from server to screen
 const outputGetAll = (e) => {
     let res = req.responseText;
     try {
-        populateOutput(JSON.parse(res));
+        populateOutput(e, JSON.parse(res));
     } catch (e) {
         outputDiv.innerHTML = `<p class='outputText'>${res}</p>`;
     }
 }
 
 
-const removeSingleFromOutput = (element, id) => {
+const removeSingleFromOutput = (element, id, isSub) => {
     console.log("HERE", id);
     element.remove();
-    sendRequest("POST", "DeleteByID.php", outputGetAll, `ID=${id}`);
+    let sub = isSub ? '&isSub=1' : '';
+    sendRequest("POST", "DeletePage.php", outputGetAll, `pageID=${id}${sub}`);
 }
 
+let x;
 // Formats JSON data from the server and add it to the screen
-const populateOutput = (data) => {
+const populateOutput = (evt, data) => {
+    x = evt;
+    console.log("EVT:",evt);
     outputDiv.innerHTML = "";
     let records = data["result"];
     records.forEach(r => {
@@ -92,7 +90,10 @@ const populateOutput = (data) => {
         btn.className = "outputBtn";
         btn.textContent = "X";
         btn.addEventListener("click", () => {
-            removeSingleFromOutput(div, r.ID);
+
+            removeSingleFromOutput(div, r.ID, evt.target.responseURL.includes('AllSub'));
+          
+         
         });
         
         if (!r.belongsTo) {
