@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if($_SESSION["isAdmin"] != 1){
+        header("Location: index.html");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +21,7 @@
         <ul id="navlist">
             <li><a href="index.html">Home</a></li>
             <li id="space"></li>
-            <li id="admin-element"><a href="Admin.html">Admin</a></li>
+            <li id="admin-element"><a href="Admin.php">Admin</a></li>
             <li><a id="login-element"></a></li>
         </ul>
         <ul id="sublist">
@@ -50,7 +56,7 @@
 
         <div id="outputDiv" class="output"></div>
 
-        <div id="styleUpdater">
+        <div id="styleUpdater" style='margin-bottom: 2em;'>
             <input id="styleText" type="text" placeholder="Style Name">
 
         </div>

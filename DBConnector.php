@@ -1,7 +1,7 @@
 <?php
 
-DEFINE ("DB_USER", "admin");
-DEFINE ("DB_PWD", "testtest1");
+DEFINE ("DB_USER", "phpa");
+DEFINE ("DB_PWD", "testing123");
 DEFINE ("DB_SERVER", "localhost");
 //DEFINE ("DB_SERVER", "10.0.0.28");
 DEFINE ("DB_NAME", "myDB");

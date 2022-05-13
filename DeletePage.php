@@ -9,10 +9,8 @@ $myDbConn = Get_DB_Connection();
 $dbres = null;
 
 if(isset($_POST["isSub"])){
-    echo "A";
     $dbres = Delete_Page($myDbConn, $_POST["pageID"], True);
 }else{
-    echo "B";
     $dbres = Delete_Page($myDbConn, $_POST["pageID"], False);
 }
 

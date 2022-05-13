@@ -1,0 +1,43 @@
+body{
+    color: #FCF0CC;
+    background-color: #0F1A20;
+    margin: 0 3em;
+    font-family: 'Oswald', sans-serif;
+}
+
+#navlist, #sublist{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    background-color: #F42C04;
+    margin: 0 -3em;
+    height: 5em;
+}
+
+#sublist{
+    background-color: #fe4520;
+    height: 3em;
+    margin-bottom: 2em;
+}
+
+#space{
+    flex-grow: 1;
+}
+
+#navlist > li{
+    padding: 1em;
+}
+
+#sublist > li{
+    padding: 0 1em;
+}
+
+a{
+    color: #FCF0CC;
+}
+
+a:hover{
+    color: #fff;
+    cursor: pointer;
+}

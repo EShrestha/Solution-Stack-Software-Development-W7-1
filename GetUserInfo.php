@@ -11,4 +11,6 @@ header('Access-Control-Allow-Credentials: true');
 
 print_r(json_encode($_SESSION));
 
+
+exit();
 ?>

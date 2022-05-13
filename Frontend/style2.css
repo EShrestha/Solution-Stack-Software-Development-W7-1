@@ -1,0 +1,44 @@
+body{
+    color: #000;
+    background-color: #D7F2BA;
+    margin: 0 3em;
+    font-family: 'Raleway', sans-serif;
+    height: 5em;
+}
+
+#navlist, #sublist{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    align-items: center;
+    background-color: #79B4A9;
+    margin: 0 -3em;
+    height: 5em;
+}
+
+#sublist{
+    background-color: #85BBB1;
+    height: 3em;
+    margin-bottom: 2em;
+}
+
+#space{
+    flex-grow: 1;
+}
+
+#navlist > li{
+    padding: 1em;
+}
+
+#sublist > li{
+    padding: 0 1em;
+}
+
+a{
+    color: #000;
+}
+
+a:hover{
+    color: #555;
+    cursor: pointer;
+}

@@ -1,5 +1,3 @@
-const server = "http://PI-eshrestha";
-// const server = "http://10.10.15.37";
 const req = new XMLHttpRequest();
 
 // Helper function to make sending requests easier
@@ -21,8 +19,7 @@ const pwd = document.getElementById("pwd");
 const checkLogin = (e) => {
     let res = req.responseText;
     if (res.trim() === 'valid') {
-        //window.location.href = "index.html";
-        
+        window.location.href = "index.html";
     } else {
         alert("Invalid, try again");
     }

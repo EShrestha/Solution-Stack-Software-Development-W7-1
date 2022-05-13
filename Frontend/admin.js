@@ -1,4 +1,4 @@
-const server = "http://10.0.0.5";
+//const server = "http://10.0.0.5";
 // const server = "http://10.10.15.37";
 const req = new XMLHttpRequest();
 
@@ -35,7 +35,7 @@ const getParams = (includeBelongsTo) => {
     if (body.value) { if (p != "") { p+="&";} p += `body=${body.value}`;}
     if (footer.value) { if (p != "") { p += "&"; } p += `footer=${footer.value}`; }
     if (isVisible.checked) { if (p != "") { p += "&"; } p += `isVisible=1`; }
-    else if (!isVisible.checked) { if (p != "") { p += "&"; } p += `isVisible=0`; }
+    else { if (p != "") { p += "&"; } p += `isVisible=0`; }
     if (includeBelongsTo) {
         if (belongsTo.value) { if (p != "") { p += "&"; } p += `belongsTo=${belongsTo.value}`; }
     }
@@ -61,7 +61,7 @@ const addBtn = document.getElementById("addBtn").addEventListener("click", (e) =
 
 const styleBtn = document.getElementById("styleBtn").addEventListener("click", () => {
     console.log("Style:", styleText.value);
-    sendRequest("POST", `UpdateStyle.php`, styleText.value)
+    sendRequest("POST", `UpdateStyle.php?styleName=${styleText.value}`);
 });
 
 // Print response from server to screen

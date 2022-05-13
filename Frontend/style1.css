@@ -1,0 +1,42 @@
+body{
+    color: #fff;
+    background-color: rgb(255, 192, 97);
+    margin: 0 3em;
+    font-family: 'Radio Canada', sans-serif;
+}
+
+#navlist, #sublist{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    background-color: rgb(255, 139, 37);
+    margin: 0 -3em;
+    height: 4em;
+    align-items: center;
+}
+
+#sublist{
+    height: 3em;
+    margin-bottom: 2em;
+}
+
+#space{
+    flex-grow: 1;
+}
+
+#navlist > li{
+    padding: 1em;
+}
+
+#sublist > li{
+    padding: 0 1em;
+}
+
+a{
+    color: #fff;
+}
+
+a:hover{
+    color: #bbb;
+    cursor: pointer;
+}
