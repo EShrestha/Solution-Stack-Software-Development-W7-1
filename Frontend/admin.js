@@ -24,6 +24,7 @@ const body = document.getElementById("body");
 const footer = document.getElementById("footer");
 const belongsTo = document.getElementById("belongsTo");
 const isVisible = document.getElementById("isVisible");
+const styleText = document.getElementById("styleText");
 
 ///////////////////////
 
@@ -56,6 +57,11 @@ const addBtn = document.getElementById("addBtn").addEventListener("click", (e) =
         sendRequest("POST", `AddSubPage.php`, outputGetAll, `${getParams(true)}`);
         
     }
+});
+
+const styleBtn = document.getElementById("styleBtn").addEventListener("click", () => {
+    console.log("Style:", styleText.value);
+    sendRequest("POST", `UpdateStyle.php`, styleText.value)
 });
 
 // Print response from server to screen
